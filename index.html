@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aurelian — A fine dining experience with exquisite dishes crafted by world-class chefs. Reserve your table today.">
+    <title>Aurelian — Fine Dining Restaurant</title>
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Minimal custom CSS — only for things Bootstrap can't do ── */
+        :root {
+            --gold: #c9a96e;
+            --gold-light: #e0c992;
+            --dark-bg: #0d0d0d;
+            --card-bg: #161616;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand, .display-1, .display-4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-gold { color: var(--gold) !important; }
+        .bg-dark-custom { background-color: var(--dark-bg) !important; }
+        .bg-card { background-color: var(--card-bg) !important; }
+        .border-gold { border-color: var(--gold) !important; }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #0d0d0d;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: #0d0d0d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 169, 110, 0.3);
+        }
+
+        .btn-outline-gold {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: #0d0d0d;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        #hero {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(13,13,13,1)), url('images/hero.png') center/cover no-repeat;
+            min-height: 100vh;
+        }
+
+        /* Navbar glass */
+        .navbar-glass {
+            backdrop-filter: blur(12px);
+            background: rgba(13, 13, 13, 0.75) !important;
+            transition: background 0.3s ease;
+        }
+
+        /* Card hover lift */
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(201, 169, 110, 0.15);
+        }
+        .card-hover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Divider line */
+        .divider-gold {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Testimonial quote */
+        .quote-icon { font-size: 2.5rem; color: var(--gold); opacity: 0.4; }
+
+        /* Fade-in animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer links */
+        .footer-link {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-link:hover { color: var(--gold); }
+
+        /* Image overlay for cards */
+        .menu-img-wrapper {
+            overflow: hidden;
+        }
+        .menu-img-wrapper img {
+            transition: transform 0.5s ease;
+        }
+        .card-hover:hover .menu-img-wrapper img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════
+         NAVBAR
+    ════════════════════════════════════════════ -->
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top navbar-glass py-3">
+        <div class="container">
+            <a class="navbar-brand text-gold fs-3 fw-bold" href="#">
+                <i class="bi bi-gem me-2"></i>Aurelian
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-lg-2 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#testimonials">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-gold btn-sm px-4 py-2 rounded-pill" href="#reservation">Reserve a Table</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════════ -->
+    <section id="hero" class="d-flex align-items-center justify-content-center text-center">
+        <div class="container">
+            <p class="text-gold text-uppercase ls-3 fw-semibold mb-3" style="letter-spacing: 6px; font-size: 0.85rem;">
+                ★ Michelin-Starred Experience ★
+            </p>
+            <h1 class="display-1 fw-bold text-white mb-4">
+                Where Every Bite<br>
+                <span class="text-gold">Tells a Story</span>
+            </h1>
+            <p class="lead text-white-50 mx-auto mb-5" style="max-width: 600px;">
+                An extraordinary culinary journey through flavors meticulously crafted by our world-class chefs using the finest seasonal ingredients.
+            </p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="#menu" class="btn btn-gold btn-lg px-5 py-3 rounded-pill">
+                    <i class="bi bi-book me-2"></i>Explore Menu
+                </a>
+                <a href="#reservation" class="btn btn-outline-gold btn-lg px-5 py-3 rounded-pill">
+                    <i class="bi bi-calendar-check me-2"></i>Book a Table
+                </a>
+            </div>
+
+            <!-- Stats row -->
+            <div class="row g-4 mt-5 pt-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gold mb-1">15+</h2>
+                    <p class="text-white-50 small mb-0">Years of Excellence</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gold mb-1">3</h2>
+                    <p class="text-white-50 small mb-0">Michelin Stars</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gold mb-1">50K+</h2>
+                    <p class="text-white-50 small mb-0">Happy Guests</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="display-5 fw-bold text-gold mb-1">120+</h2>
+                    <p class="text-white-50 small mb-0">Signature Dishes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         MENU SECTION — Card Layout
+    ════════════════════════════════════════════ -->
+    <section id="menu" class="py-5 bg-dark-custom">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <p class="text-gold text-uppercase fw-semibold mb-2" style="letter-spacing: 4px; font-size: 0.8rem;">Our Specialties</p>
+                <h2 class="display-4 fw-bold text-white">The Menu</h2>
+                <div class="divider-gold mx-auto mt-3 mb-4"></div>
+                <p class="text-white-50 mx-auto" style="max-width: 550px;">
+                    Each dish is a masterpiece — handcrafted with passion, plated with artistry, and served with soul.
+                </p>
+            </div>
+
+            <!-- Filter pills -->
+            <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap fade-up" id="menuFilters">
+                <button class="btn btn-gold btn-sm rounded-pill px-4 py-2 active" data-filter="all">All</button>
+                <button class="btn btn-outline-gold btn-sm rounded-pill px-4 py-2" data-filter="starters">Starters</button>
+                <button class="btn btn-outline-gold btn-sm rounded-pill px-4 py-2" data-filter="mains">Mains</button>
+                <button class="btn btn-outline-gold btn-sm rounded-pill px-4 py-2" data-filter="desserts">Desserts</button>
+            </div>
+
+            <!-- Menu Cards Grid -->
+            <div class="row g-4" id="menuGrid">
+
+                <!-- Card 1 — Appetizer -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="starters">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="menu-img-wrapper">
+                            <img src="images/appetizer.png" class="card-img-top" alt="Burrata Bruschetta" style="height: 260px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Burrata Bruschetta</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$22</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                Creamy burrata on artisan sourdough, heirloom cherry tomatoes, aged balsamic, fresh basil oil drizzle.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-clock me-1"></i>15 min</span>
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-fire me-1"></i>280 cal</span>
+                                <span class="badge bg-dark text-gold rounded-pill"><i class="bi bi-leaf me-1"></i>Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 — Steak -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="mains">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="menu-img-wrapper position-relative">
+                            <img src="images/steak.png" class="card-img-top" alt="Filet Mignon" style="height: 260px; object-fit: cover;">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-danger rounded-pill px-3 py-2">
+                                <i class="bi bi-star-fill me-1"></i>Chef's Pick
+                            </span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Wagyu Filet Mignon</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$68</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                A5 Wagyu tenderloin, red wine reduction, truffle asparagus, roasted bone marrow butter.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-clock me-1"></i>35 min</span>
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-fire me-1"></i>520 cal</span>
+                                <span class="badge bg-dark text-danger rounded-pill"><i class="bi bi-star-fill me-1"></i>Signature</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 — Salmon -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="mains">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="menu-img-wrapper">
+                            <img src="images/salmon.png" class="card-img-top" alt="Pan-Seared Salmon" style="height: 260px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Atlantic Salmon</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$45</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                Pan-seared wild salmon, lemon caper beurre blanc, dill-infused quinoa, micro herb garnish.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-clock me-1"></i>25 min</span>
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-fire me-1"></i>410 cal</span>
+                                <span class="badge bg-dark text-info rounded-pill"><i class="bi bi-droplet me-1"></i>Omega-3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 — Pasta -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="mains">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="menu-img-wrapper">
+                            <img src="images/pasta.png" class="card-img-top" alt="Truffle Tagliatelle" style="height: 260px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Truffle Tagliatelle</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$38</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                Handmade egg tagliatelle, black truffle shavings, aged Parmigiano-Reggiano, chive butter emulsion.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-clock me-1"></i>20 min</span>
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-fire me-1"></i>480 cal</span>
+                                <span class="badge bg-dark text-gold rounded-pill"><i class="bi bi-leaf me-1"></i>Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 — Dessert -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="desserts">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="menu-img-wrapper position-relative">
+                            <img src="images/dessert.png" class="card-img-top" alt="Chocolate Lava Cake" style="height: 260px; object-fit: cover;">
+                            <span class="position-absolute top-0 end-0 m-3 badge bg-warning text-dark rounded-pill px-3 py-2">
+                                <i class="bi bi-heart-fill me-1"></i>Best Seller
+                            </span>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Molten Lava Cake</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$18</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                Valrhona dark chocolate fondant, Tahitian vanilla bean ice cream, raspberry coulis, 24k gold leaf.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-clock me-1"></i>12 min</span>
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-fire me-1"></i>350 cal</span>
+                                <span class="badge bg-dark text-warning rounded-pill"><i class="bi bi-heart-fill me-1"></i>Popular</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 — Wine Pairing -->
+                <div class="col-md-6 col-lg-4 fade-up menu-item" data-category="starters">
+                    <div class="card bg-card border-0 rounded-4 overflow-hidden h-100 card-hover">
+                        <div class="card-body p-4 d-flex flex-column justify-content-center text-center" style="min-height: 260px; background: linear-gradient(135deg, #1a1a2e, #16213e);">
+                            <i class="bi bi-cup-straw display-1 text-gold mb-3"></i>
+                            <h5 class="text-white fw-bold mb-2">Sommelier's Pairing</h5>
+                            <p class="text-white-50 small mb-0">Let our master sommelier curate the perfect wine pairing for your meal</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title text-white fw-bold mb-0">Wine Tasting Flight</h5>
+                                <span class="badge rounded-pill bg-dark text-gold border border-gold fs-6">$55</span>
+                            </div>
+                            <p class="card-text text-white-50 small mb-3">
+                                A curated flight of five premium wines selected to complement your chosen courses.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-dark text-white-50 rounded-pill"><i class="bi bi-cup-straw me-1"></i>5 wines</span>
+                                <span class="badge bg-dark text-gold rounded-pill"><i class="bi bi-gem me-1"></i>Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         ABOUT / CHEF SECTION
+    ════════════════════════════════════════════ -->
+    <section id="about" class="py-5" style="background: linear-gradient(180deg, #0d0d0d, #111111);">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <div class="position-relative">
+                        <img src="images/chef.png" alt="Executive Chef" class="img-fluid rounded-4 shadow-lg" style="object-fit: cover; height: 550px; width: 100%;">
+                        <div class="position-absolute bottom-0 start-0 m-4 p-3 rounded-3" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);">
+                            <p class="text-gold fw-bold mb-0">Chef Marco Valenti</p>
+                            <p class="text-white-50 small mb-0">Executive Chef • 20 Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-up">
+                    <p class="text-gold text-uppercase fw-semibold mb-2" style="letter-spacing: 4px; font-size: 0.8rem;">Our Story</p>
+                    <h2 class="display-5 fw-bold text-white mb-4">
+                        A Legacy of<br><span class="text-gold">Culinary Mastery</span>
+                    </h2>
+                    <div class="divider-gold mb-4"></div>
+                    <p class="text-white-50 mb-4" style="line-height: 1.8;">
+                        Founded in 2011, Aurelian began as a vision to redefine fine dining. Chef Marco Valenti brings two decades of experience from the world's most prestigious kitchens in Paris, Tokyo, and New York.
+                    </p>
+                    <p class="text-white-50 mb-4" style="line-height: 1.8;">
+                        Every ingredient is sourced from sustainable farms and artisan producers. Our menu evolves with the seasons, ensuring each visit offers a new chapter in your culinary journey.
+                    </p>
+
+                    <!-- Feature cards row -->
+                    <div class="row g-3 mt-4">
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 bg-card text-center">
+                                <i class="bi bi-trophy text-gold fs-3 mb-2 d-block"></i>
+                                <p class="text-white fw-semibold small mb-1">Award Winning</p>
+                                <p class="text-white-50 small mb-0">3 Michelin Stars</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 bg-card text-center">
+                                <i class="bi bi-globe text-gold fs-3 mb-2 d-block"></i>
+                                <p class="text-white fw-semibold small mb-1">Global Cuisine</p>
+                                <p class="text-white-50 small mb-0">French-Japanese Fusion</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 bg-card text-center">
+                                <i class="bi bi-flower1 text-gold fs-3 mb-2 d-block"></i>
+                                <p class="text-white fw-semibold small mb-1">Farm to Table</p>
+                                <p class="text-white-50 small mb-0">100% Organic</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 rounded-3 bg-card text-center">
+                                <i class="bi bi-people text-gold fs-3 mb-2 d-block"></i>
+                                <p class="text-white fw-semibold small mb-1">Private Events</p>
+                                <p class="text-white-50 small mb-0">Up to 80 Guests</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         TESTIMONIALS SECTION
+    ════════════════════════════════════════════ -->
+    <section id="testimonials" class="py-5 bg-dark-custom">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <p class="text-gold text-uppercase fw-semibold mb-2" style="letter-spacing: 4px; font-size: 0.8rem;">Guest Reviews</p>
+                <h2 class="display-4 fw-bold text-white">What They Say</h2>
+                <div class="divider-gold mx-auto mt-3 mb-4"></div>
+            </div>
+
+            <!-- Bootstrap Carousel for testimonials -->
+            <div id="testimonialCarousel" class="carousel slide fade-up" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="card bg-card border-0 rounded-4 p-5 text-center">
+                                    <i class="bi bi-quote quote-icon mb-3"></i>
+                                    <p class="text-white fs-5 fst-italic mb-4" style="line-height: 1.8;">
+                                        "An unforgettable evening. The Wagyu filet was the single best dish I have ever tasted. The ambiance, the service, the artistry on each plate — Aurelian is not just a restaurant, it's a destination."
+                                    </p>
+                                    <div class="d-flex align-items-center justify-content-center gap-3">
+                                        <div class="rounded-circle bg-dark d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <i class="bi bi-person-fill text-gold fs-5"></i>
+                                        </div>
+                                        <div class="text-start">
+                                            <p class="text-white fw-bold mb-0">James Harrison</p>
+                                            <p class="text-gold small mb-0">Food Critic, The Times</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="card bg-card border-0 rounded-4 p-5 text-center">
+                                    <i class="bi bi-quote quote-icon mb-3"></i>
+                                    <p class="text-white fs-5 fst-italic mb-4" style="line-height: 1.8;">
+                                        "We celebrated our anniversary here and every moment was magical. From the sommelier's perfect wine pairing to the surprise dessert — Chef Marco and team made it truly special."
+                                    </p>
+                                    <div class="d-flex align-items-center justify-content-center gap-3">
+                                        <div class="rounded-circle bg-dark d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <i class="bi bi-person-fill text-gold fs-5"></i>
+                                        </div>
+                                        <div class="text-start">
+                                            <p class="text-white fw-bold mb-0">Emily & Robert Chen</p>
+                                            <p class="text-gold small mb-0">Loyal Patrons</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="card bg-card border-0 rounded-4 p-5 text-center">
+                                    <i class="bi bi-quote quote-icon mb-3"></i>
+                                    <p class="text-white fs-5 fst-italic mb-4" style="line-height: 1.8;">
+                                        "Three Michelin stars and it still exceeds expectations. The truffle tagliatelle alone is worth the journey. Pure culinary poetry on a plate."
+                                    </p>
+                                    <div class="d-flex align-items-center justify-content-center gap-3">
+                                        <div class="rounded-circle bg-dark d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                            <i class="bi bi-person-fill text-gold fs-5"></i>
+                                        </div>
+                                        <div class="text-start">
+                                            <p class="text-white fw-bold mb-0">Sofia Laurent</p>
+                                            <p class="text-gold small mb-0">Editor, Bon Appétit</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-half text-warning"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel controls -->
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width:48px; height:48px;" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width:48px; height:48px;" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         GALLERY SECTION
+    ════════════════════════════════════════════ -->
+    <section id="gallery" class="py-5" style="background: #111111;">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <p class="text-gold text-uppercase fw-semibold mb-2" style="letter-spacing: 4px; font-size: 0.8rem;">Visual Journey</p>
+                <h2 class="display-4 fw-bold text-white">Gallery</h2>
+                <div class="divider-gold mx-auto mt-3 mb-4"></div>
+            </div>
+            <div class="row g-3 fade-up">
+                <div class="col-md-4">
+                    <img src="images/appetizer.png" alt="Appetizer" class="img-fluid rounded-4 w-100 card-hover" style="height:280px; object-fit:cover;">
+                </div>
+                <div class="col-md-4">
+                    <img src="images/steak.png" alt="Main Course" class="img-fluid rounded-4 w-100 card-hover" style="height:280px; object-fit:cover;">
+                </div>
+                <div class="col-md-4">
+                    <img src="images/dessert.png" alt="Dessert" class="img-fluid rounded-4 w-100 card-hover" style="height:280px; object-fit:cover;">
+                </div>
+                <div class="col-md-6">
+                    <img src="images/chef.png" alt="Chef at Work" class="img-fluid rounded-4 w-100 card-hover" style="height:300px; object-fit:cover;">
+                </div>
+                <div class="col-md-6">
+                    <img src="images/hero.png" alt="Dining Ambiance" class="img-fluid rounded-4 w-100 card-hover" style="height:300px; object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         RESERVATION SECTION
+    ════════════════════════════════════════════ -->
+    <section id="reservation" class="py-5 bg-dark-custom">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 fade-up">
+                    <p class="text-gold text-uppercase fw-semibold mb-2" style="letter-spacing: 4px; font-size: 0.8rem;">Book Your Experience</p>
+                    <h2 class="display-5 fw-bold text-white mb-4">Reserve a Table</h2>
+                    <div class="divider-gold mb-4"></div>
+                    <p class="text-white-50 mb-4" style="line-height: 1.8;">
+                        Join us for an extraordinary culinary evening. We recommend booking at least 48 hours in advance for the best experience.
+                    </p>
+
+                    <!-- Contact details -->
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-card" style="width: 48px; height: 48px; min-width: 48px;">
+                            <i class="bi bi-geo-alt-fill text-gold fs-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-white fw-semibold mb-0">Location</p>
+                            <p class="text-white-50 small mb-0">42 Gourmet Avenue, Manhattan, NY 10012</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-card" style="width: 48px; height: 48px; min-width: 48px;">
+                            <i class="bi bi-clock-fill text-gold fs-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-white fw-semibold mb-0">Hours</p>
+                            <p class="text-white-50 small mb-0">Tue — Sun: 5:30 PM – 11:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-card" style="width: 48px; height: 48px; min-width: 48px;">
+                            <i class="bi bi-telephone-fill text-gold fs-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-white fw-semibold mb-0">Call Us</p>
+                            <p class="text-white-50 small mb-0">+1 (212) 555-0187</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="col-lg-7 fade-up">
+                    <div class="card bg-card border-0 rounded-4 p-4 p-md-5">
+                        <form id="reservationForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="resName" class="form-label text-white-50 small">Full Name</label>
+                                    <input type="text" class="form-control bg-dark border-secondary text-white rounded-3 py-3" id="resName" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resEmail" class="form-label text-white-50 small">Email</label>
+                                    <input type="email" class="form-control bg-dark border-secondary text-white rounded-3 py-3" id="resEmail" placeholder="john@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resPhone" class="form-label text-white-50 small">Phone</label>
+                                    <input type="tel" class="form-control bg-dark border-secondary text-white rounded-3 py-3" id="resPhone" placeholder="+1 (555) 000-0000">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resGuests" class="form-label text-white-50 small">Number of Guests</label>
+                                    <select class="form-select bg-dark border-secondary text-white rounded-3 py-3" id="resGuests">
+                                        <option value="1">1 Guest</option>
+                                        <option value="2" selected>2 Guests</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="4">4 Guests</option>
+                                        <option value="5">5 Guests</option>
+                                        <option value="6">6+ Guests (Private Dining)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resDate" class="form-label text-white-50 small">Date</label>
+                                    <input type="date" class="form-control bg-dark border-secondary text-white rounded-3 py-3" id="resDate" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resTime" class="form-label text-white-50 small">Preferred Time</label>
+                                    <select class="form-select bg-dark border-secondary text-white rounded-3 py-3" id="resTime">
+                                        <option value="17:30">5:30 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="18:30">6:30 PM</option>
+                                        <option value="19:00" selected>7:00 PM</option>
+                                        <option value="19:30">7:30 PM</option>
+                                        <option value="20:00">8:00 PM</option>
+                                        <option value="20:30">8:30 PM</option>
+                                        <option value="21:00">9:00 PM</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="resMessage" class="form-label text-white-50 small">Special Requests</label>
+                                    <textarea class="form-control bg-dark border-secondary text-white rounded-3 py-3" id="resMessage" rows="3" placeholder="Allergies, dietary restrictions, special occasions..."></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-gold btn-lg w-100 py-3 rounded-3">
+                                        <i class="bi bi-check-circle me-2"></i>Confirm Reservation
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Success Alert (hidden by default) -->
+                        <div id="reservationSuccess" class="alert alert-success d-none mt-4 rounded-3 border-0" role="alert">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-check-circle-fill fs-4"></i>
+                                <div>
+                                    <strong>Reservation Confirmed!</strong>
+                                    <p class="mb-0 small">We've sent a confirmation to your email. See you soon!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════════ -->
+    <footer class="py-5" style="background: #0a0a0a;">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <!-- Brand -->
+                <div class="col-lg-4">
+                    <h4 class="text-gold fw-bold mb-3"><i class="bi bi-gem me-2"></i>Aurelian</h4>
+                    <p class="text-white-50 small" style="line-height: 1.8;">
+                        An exquisite fine dining experience where passion meets perfection. Every dish, a masterpiece. Every evening, unforgettable.
+                    </p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;" aria-label="Twitter">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width:40px; height:40px;" aria-label="TripAdvisor">
+                            <i class="bi bi-globe2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#hero" class="footer-link small">Home</a></li>
+                        <li class="mb-2"><a href="#menu" class="footer-link small">Menu</a></li>
+                        <li class="mb-2"><a href="#about" class="footer-link small">About Us</a></li>
+                        <li class="mb-2"><a href="#reservation" class="footer-link small">Reservations</a></li>
+                    </ul>
+                </div>
+
+                <!-- More -->
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-bold mb-3">More</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link small">Private Events</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link small">Gift Cards</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link small">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link small">Press</a></li>
+                    </ul>
+                </div>
+
+                <!-- Opening Hours -->
+                <div class="col-lg-4">
+                    <h6 class="text-white fw-bold mb-3">Opening Hours</h6>
+                    <div class="d-flex justify-content-between text-white-50 small mb-2">
+                        <span>Monday</span><span class="text-gold">Closed</span>
+                    </div>
+                    <div class="d-flex justify-content-between text-white-50 small mb-2">
+                        <span>Tuesday — Friday</span><span>5:30 PM — 11:00 PM</span>
+                    </div>
+                    <div class="d-flex justify-content-between text-white-50 small mb-2">
+                        <span>Saturday</span><span>5:00 PM — 11:30 PM</span>
+                    </div>
+                    <div class="d-flex justify-content-between text-white-50 small mb-2">
+                        <span>Sunday</span><span>5:00 PM — 10:00 PM</span>
+                    </div>
+                    <hr class="border-secondary my-3">
+                    <p class="text-white-50 small mb-0"><i class="bi bi-info-circle me-1"></i>Last seating 1 hour before closing</p>
+                </div>
+            </div>
+
+            <hr class="border-secondary">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 pt-3">
+                <p class="text-white-50 small mb-0">&copy; 2026 Aurelian. All rights reserved.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="footer-link small">Privacy Policy</a>
+                    <a href="#" class="footer-link small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ════════════════════════════════════════════
+         BACK TO TOP BUTTON
+    ════════════════════════════════════════════ -->
+    <button id="backToTop" class="btn btn-gold rounded-circle position-fixed shadow-lg d-flex align-items-center justify-content-center"
+            style="width:50px; height:50px; bottom:30px; right:30px; z-index:1050; display:none !important;"
+            aria-label="Back to top">
+        <i class="bi bi-chevron-up fs-5"></i>
+    </button>
+
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ── Scroll-triggered fade-in animation ──
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ── Navbar background on scroll ──
+        const navbar = document.getElementById('mainNavbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 13, 13, 0.95)';
+                navbar.classList.add('shadow');
+            } else {
+                navbar.style.background = 'rgba(13, 13, 13, 0.75)';
+                navbar.classList.remove('shadow');
+            }
+        });
+
+        // ── Back to Top button ──
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ── Menu filter ──
+        const filterBtns = document.querySelectorAll('#menuFilters button');
+        const menuItems = document.querySelectorAll('.menu-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => {
+                    b.classList.remove('btn-gold');
+                    b.classList.add('btn-outline-gold');
+                });
+                btn.classList.remove('btn-outline-gold');
+                btn.classList.add('btn-gold');
+
+                const filter = btn.dataset.filter;
+                menuItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = '';
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ── Reservation form ──
+        const form = document.getElementById('reservationForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const successAlert = document.getElementById('reservationSuccess');
+            successAlert.classList.remove('d-none');
+            form.reset();
+            setTimeout(() => successAlert.classList.add('d-none'), 5000);
+        });
+
+        // ── Set min date to today ──
+        const dateInput = document.getElementById('resDate');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+        dateInput.value = today;
+
+        // ── Add smooth transition for menu items ──
+        menuItems.forEach(item => {
+            item.style.transition = 'opacity 0.4s ease';
+        });
+    </script>
+
+</body>
+</html>
